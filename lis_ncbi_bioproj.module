@@ -1,0 +1,63 @@
+<?php
+// $Id$
+
+// lis_ncbi_bioproj
+
+// Sudhansu Dash
+// 2016 Jan 29
+
+
+/**
+ * Implements hook_menu().
+ */
+
+function lis_ncbi_bioproj_menu() {
+  $items = array();
+  $items['lis_ncbi_bioproj'] = array( //this creates a URL
+    'title' => 'NCBI BioProjects', //page title
+    'description' => 'A list of NCBI Bioprojects for LIS legume species via Entrez Eutils',
+    'page callback' => lis_ncbi_bioproj_page_callback, //this fn is called when page accessed. For form, use drupal_get_form
+    //'page arguments' => array('grin_acc_query_form'), //form name here; no need if page callback fn() doesn't need it.
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+
+function lis_ncbi_bioproj_theme() {
+  return array(
+    'lis_ncbi_bioproj_page_template' => array(  // this array name to be used in theme() fn.
+    'template' => 'lis_ncbi_bioproj_page',  //template file lis_ncbi_bioproj_page.tpl.php
+    //'variables' => array(),
+    ),  //array page_template
+  );  // array return
+}    
+
+/**
+ * Implements page callback.
+ */
+
+function lis_ncbi_bioproj_page_callback() {
+  
+  $genus = "Phaseolus";
+  $method = "All";
+
+  // array name in hook_theme() that specifies page template file.
+  return theme ('lis_ncbi_bioproj_page_template', array('genus'=>$genus, 'method'=>$method, )); 
+}
+
+
+
+
+//  SCRATCH PAD
+//=============
+
+/*
+ 
+
+*/

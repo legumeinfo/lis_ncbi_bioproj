@@ -1,0 +1,10 @@
+name = lis_ncbi_bioproj
+description = List all the NCBI publications citing LIS 2005 and 2016 NAR article.
+core = 7.x
+files[] = lis_ncbi_bioproj.module
+
+package = LIS
+;dependencies[] = 
+;dependencies[] = 
+;files[] = 
+;configure = 

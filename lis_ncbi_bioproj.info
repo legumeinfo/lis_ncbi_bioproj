@@ -1,5 +1,5 @@
 name = lis_ncbi_bioproj
-description = List all the NCBI publications citing LIS 2005 and 2016 NAR article.
+description = Module to list NCBI BioProjects for legumes at LIS.
 core = 7.x
 files[] = lis_ncbi_bioproj.module
 

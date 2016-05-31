@@ -89,11 +89,7 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         var bioproj = "<b>"
             + bioproj_ncbi_link + ": " + "</b>"
             + project_title
-            + " (" + "organism: " + organism_name + "; "
-            + "project type: " + project_data_type + "; "
-            + "method: " + project_methodtype + "; "
-            + "target material: " + project_target_material
-            + ").";
+            + " (" + project_methodtype + ")";
         
         //var more_details = "<a id='collapseLink'  onclick=\"(function($) { $(document).ready(function(){$(this).next('fieldset').toggle('5000'); $('#collapseLink').text(($('#collapseLink').text() == '...less') ? '>[...more]' : '...less');}); })(jQuery);\" "
         //    + ">[...more]</a>" 
@@ -106,13 +102,17 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         
         var more_details = "<a onclick=\"jQuery(this).next('fieldset').toggle();\">&nbsp;&nbsp;Details <b>[&plusmn;]</b></a>"
             + "<fieldset id='details'  style='display:none;background-color: #EFEFEF'>"
-            + project_name + "<br/>" + project_description
+            + "<b>Project name:</b> " + project_name + "&nbsp;"
+            + " (" + "<b>Organism:</b> " + "<i>" + organism_name + "</i>" + "; "
+            + "<b>Project type:</b> " + project_data_type + "; "
+            + "<b>Method:</b> " + project_methodtype + "; "
+            + "<b>Target material:</b> " + project_target_material
+            + ")." + "<br/>"
+            + "<b>Project description:</b> " + project_description
             + "</fieldset>";
         //console.log("more_details:"+more_details);
   
-  
-  
-  
+
         var bioproj_li = "<li>" + bioproj + more_details + "</li><br/>";                
         
         bioprojects_html += bioproj_li;

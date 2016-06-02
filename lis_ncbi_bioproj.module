@@ -4,7 +4,7 @@
 // lis_ncbi_bioproj
 
 // Sudhansu Dash
-// 2016 Jan 29
+// 2016 Apr 29
 
 
 /**
@@ -43,12 +43,12 @@ function lis_ncbi_bioproj_theme() {
  */
 
 function lis_ncbi_bioproj_page_callback() {
-  
+  $project_data_type = "All";
   $genus = "Phaseolus";
   $method = "All";
 
   // array name in hook_theme() that specifies page template file.
-  return theme ('lis_ncbi_bioproj_page_template', array('genus'=>$genus, 'method'=>$method, )); 
+  return theme ('lis_ncbi_bioproj_page_template', array('genus'=>$genus, 'method'=>$method, 'project_data_type'=>$project_data_type, )); 
 }
 
 

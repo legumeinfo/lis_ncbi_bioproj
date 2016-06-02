@@ -10,11 +10,9 @@ JS functions for the lis_ncbi_bioproj module
 
 /* TODO:
  *
- *((Phaseolus[Organism]) AND ("Transcriptome or Gene expression"[Project Data Type]))
- *
  */
 
-
+//INFO: ((Phaseolus[Organism]) AND ("Transcriptome or Gene expression"[Project Data Type]))
 
 
 function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProgress
@@ -38,6 +36,7 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         //Go through each uid and extract the attributes to make html
         //console.log("for-each: " + uid); //debug
         
+        //From ncbi
         var taxid = esummaryResult[uid]['taxid']; //console.log(taxid);
         var project_id = esummaryResult[uid]['project_id']; //console.log(project_id);
         var project_acc = esummaryResult[uid]['project_acc']; //console.log(project_acc);
@@ -50,42 +49,12 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         var project_methodtype = esummaryResult[uid]['project_methodtype']; //console.log("project_methodtype" + project_methodtype);
         var project_target_material = esummaryResult[uid]['project_target_material']; //console.log(project_target_material);
         
-        
-        
-        /*
-        //From lis-recent-pubs:
-        var authors = [];
-        esummaryResult[uid]['authors'].forEach(function(author){
-           authors.push([author.name]); 
-        })  // forEach author
-        //console.log("AUTTHORS: " + authors);  //debug
-            
-        var authorFirst = esummaryResult[uid]['authors'][0]['name'];
-        var title = esummaryResult[uid]['title']; //console.log(title);
-        var pubdate = esummaryResult[uid]['pubdate'];
-        var year = pubdate.match(/^\d\d\d\d/);
-        
-        var issue = (esummaryResult[uid]['issue']);
-        issue = (issue) ? "(" + issue + ")":""; //null if no issue else with parenthesis (issue)
-        
-        var pages = esummaryResult[uid]['pages'];
-        var sortfirstauthor = esummaryResult[uid]['sortfirstauthor'];
-        var source = esummaryResult[uid]['source']; //console.log(source);
-        var volume = esummaryResult[uid]['volume']; //console.log(volume);
-        
-        var linkToUid = "<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/" + uid + "\"" + "  target=\"_blank\">" + title + "</a>";
-        
-        var citation = (authors.join(", ") + ". " + "<b>" + year + "</b>" + ". " + linkToUid + " " + "<strong>" + source + " " + volume +  issue + ":" + pages + "</strong>" + "." + " (" + uid + ")");
-        var citation_li = "<li>" + citation + "</li><br/>"; // + "\n\n";
-        //Creates like:
-        //Dash S, Campbell JD, Cannon EK, Cleary AM, ......, Farmer AD, Cannon SB. 2016. Legume information system (LegumeInfo.org): a key component of a set of federated data resources for the legume family. Nucleic Acids Res 44(D1):D1181-8. (<a href="http://www.ncbi.nlm.nih.gov/pubmed/26546515"  target="_blank">26546515</a>)
-        //console.log("citation_li: " + citation_li); //debug
-        */
-        
+        //link to ncbi bioproj with proj id        
         var bioproj_ncbi_link = "<a  "
                 + "href=\"http://www.ncbi.nlm.nih.gov/bioproject/" + project_id + "\" "
                 + " target=_blank" + ">" + project_acc + "</a>"; //288189;
         
+        //The display line
         var bioproj = "<b>"
             + bioproj_ncbi_link + ": " + "</b>"
             + project_title
@@ -100,6 +69,7 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         //+ "</fieldset>";
   /*$('fieldset#details').toggle('5000');*/
         
+        //Details in collapsible section
         var more_details = "<a onclick=\"jQuery(this).next('fieldset').toggle();\">&nbsp;&nbsp;Details <b>[&plusmn;]</b></a>"
             + "<fieldset id='details'  style='display:none;background-color: #EFEFEF'>"
             + "<b>Project name:</b> " + project_name + "<br/>"
@@ -192,16 +162,6 @@ function FillDomElementWithBioprojHtml (genus, projectDataType, method, domEleme
         
     }
     
-    //Original<<<<<
-    //for method:
-    /*
-    if (method != "All") {
-        query = "&term=" + termOrganism + "+AND+" + "(\"Transcriptome+or+Gene+expression\"[Project+Data+Type])"
-               + "+AND+" + termMethod;
-    } else {
-        query = "&term=" + termOrganism + "+AND+" + "(\"Transcriptome+or+Gene+expression\"[Project+Data+Type])";
-    }*/
-    //>>>>>>>>>>>>>
     
     var UrlEsearch = BaseUrlEsearch + query; //returns json obj
     

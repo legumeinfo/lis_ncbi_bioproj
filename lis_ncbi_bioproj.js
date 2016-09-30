@@ -51,7 +51,7 @@ function makeHtmlFromBioprojEsummaryJson(esummaryJson) {  //NOT DONE YET winProg
         
         //link to ncbi bioproj with proj id        
         var bioproj_ncbi_link = "<a  "
-                + "href=\"http://www.ncbi.nlm.nih.gov/bioproject/" + project_id + "\" "
+                + "href=\"https://www.ncbi.nlm.nih.gov/bioproject/" + project_id + "\" "
                 + " target=_blank" + ">" + project_acc + "</a>"; //288189;
         
         //The display line
@@ -127,10 +127,10 @@ function FillDomElementWithBioprojHtml (genus, projectDataType, method, domEleme
     var htmlContent = "";
     
     //Construct Esearch URL
-    //http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&retmode=json&term=(Arachis[Organism]) AND (\"Transcriptome or Gene expression\"[Project Data Type])&retmax=10000;
+    //https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=bioproject&retmode=json&term=(Arachis[Organism]) AND (\"Transcriptome or Gene expression\"[Project Data Type])&retmax=10000;
     
-//http://www.ncbi.nlm.nih.gov/bioproject/279009  //links to the specific bioproj
-    var BaseUrlEsearch = "http:" + "//eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + "db=bioproject" + "&retmode=json" + "&retmax=10000";
+//https://www.ncbi.nlm.nih.gov/bioproject/279009  //links to the specific bioproj
+    var BaseUrlEsearch = "https:" + "//eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?" + "db=bioproject" + "&retmode=json" + "&retmax=10000";
     
     var termOrganism = "(" + genus + "[Organism])";
     var termMethod = "(" + "\"method " +  method +"\"[Properties])";
@@ -188,7 +188,7 @@ function FillDomElementWithBioprojHtml (genus, projectDataType, method, domEleme
         jQuery("#" + domElementId).html (message);
         //jQuery("#" + domElementId).html ("esearchIdlist: " + esearchIdlist.join());
         
-        var esummaryUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=bioproject&retmode=json" + "&id="
+        var esummaryUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=bioproject&retmode=json" + "&id="
             + esearchIdlist.join();
         //console.log("esummaryUrl: " + esummaryUrl); //debug
         
